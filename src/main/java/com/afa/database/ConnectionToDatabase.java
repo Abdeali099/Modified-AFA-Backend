@@ -1,7 +1,8 @@
 package com.afa.database;
 
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.DriverManager;
-import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
@@ -16,15 +17,15 @@ public class ConnectionToDatabase {
 
     /* <---- Only One time execute ----> */
     static {
-
+        FileReader fileReader=null;
         try {
 
             /* Fetching properties from props */
-            FileInputStream fis = new FileInputStream(PATH);
+            fileReader= new FileReader(PATH);
             Properties prop = new Properties();
-            prop.load(fis);
+            prop.load(fileReader);
 
-                  URL = prop.getProperty("url");
+             URL = prop.getProperty("url");
              USERNAME = prop.getProperty("userName");
              PASSWORD = prop.getProperty("password");
 
@@ -43,6 +44,14 @@ public class ConnectionToDatabase {
 
         } catch (Exception exception) {
             System.out.println(" => Error at static block Database connection : " + exception);
+        }finally {
+            if (fileReader != null) {
+                try {
+                    fileReader.close();
+                } catch (IOException e) {
+                    System.out.println("Error in closing reader");
+                }
+            }
         }
 
     }
