@@ -12,7 +12,7 @@ public class ConnectionToDatabase {
     /* <---- static attribute ----> */
     private static Connection connection;
     private static String URL="",USERNAME="",PASSWORD="";
-    private static final String PATH="E:\\Modified_AJT_Project\\AnyTImeFileAccess\\src\\assets\\credential.props";
+    private static final String PATH="E:\\Modified_AJT_Project\\AnyTimeFileAccess\\src\\main\\resources\\credential.props";
     /* This have to make relative, but it is not working currently */
 
     /* <---- Only One time execute ----> */
