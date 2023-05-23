@@ -21,8 +21,6 @@ public class AFASignup extends HttpServlet {
     @Override
     public void init() throws ServletException {
 
-        System.out.println("Signup Servlet is loaded in container");
-
         /* Establishing connection : only once */
         try {
             connection= ConnectionToDatabase.getConnection();
@@ -36,14 +34,10 @@ public class AFASignup extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.addHeader("Access-Control-Allow-Origin", "*");
 
-        System.out.println("Post method of signup is called");
-
         /* <-- Global variables --> */
-        String userEmail = "", userPassword = "", userName = "", userPhone = "";
+        String userEmail,userPassword,userName,userPhone;
 
         try {
-
-            System.out.println(connection);
 
             /* <-- get details from request object --> */
             userName = request.getParameter("afa_username");

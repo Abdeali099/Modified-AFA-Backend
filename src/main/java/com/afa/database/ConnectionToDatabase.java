@@ -1,10 +1,12 @@
 package com.afa.database;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.Properties;
 
 public class ConnectionToDatabase {
@@ -12,22 +14,27 @@ public class ConnectionToDatabase {
     /* <---- static attribute ----> */
     private static Connection connection;
     private static String URL="",USERNAME="",PASSWORD="";
-    private static final String PATH="E:\\Modified_AJT_Project\\AnyTimeFileAccess\\src\\main\\resources\\credential.props";
-    /* This have to make relative, but it is not working currently */
+    private static final String PATH="credential.props";
 
     /* <---- Only One time execute ----> */
     static {
+
         FileReader fileReader=null;
+
         try {
 
+            /* Fetching prop file */
+             ClassLoader classLoader = ConnectionToDatabase.class.getClassLoader();
+             File file = new File(Objects.requireNonNull(classLoader.getResource(PATH)).getFile());
+
             /* Fetching properties from props */
-            fileReader= new FileReader(PATH);
+            fileReader= new FileReader(file);
             Properties prop = new Properties();
             prop.load(fileReader);
 
-             URL = prop.getProperty("url");
-             USERNAME = prop.getProperty("userName");
-             PASSWORD = prop.getProperty("password");
+            URL = prop.getProperty("url");
+            USERNAME = prop.getProperty("userName");
+            PASSWORD = prop.getProperty("password");
 
             /* Registering Driver class for 'mysql' */
             Class.forName("com.mysql.cj.jdbc.Driver");
