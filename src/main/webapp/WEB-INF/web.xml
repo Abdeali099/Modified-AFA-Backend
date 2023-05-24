@@ -13,4 +13,14 @@
       <url-pattern>/signup</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+      <servlet-name>OTP_Send</servlet-name>
+      <servlet-class>com.afa.authorization.otphandle.OTPSender</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+      <servlet-name>OTP_Send</servlet-name>
+      <url-pattern>/sendOTP</url-pattern>
+  </servlet-mapping>
+
 </web-app>
