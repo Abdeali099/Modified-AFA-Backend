@@ -24,15 +24,24 @@ public class OTPSender extends HttpServlet {
             /* Generate OTP */
             String OTP = OTPGenerator.getOTP();
 
-
             /* Send OTP through mail */
 
-            /* Sending response */
-            response.setStatus(200);
-            response.getWriter().println(OTP);
+            boolean isMailSend=MailSender.sendMail(user_mail,OTP);
 
+            /* Sending response */
+
+            if (isMailSend) {
+                response.setStatus(200);
+                response.getWriter().println(OTP);
+            } else {
+                response.setStatus(500);
+                response.getWriter().println("Error");
+            }
         } catch (Exception exception) {
             System.out.println("Error in sending OTP : " + exception);
+
+            response.setStatus(500);
+            response.getWriter().println("Error");
         }
 
     }

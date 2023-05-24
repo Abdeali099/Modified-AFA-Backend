@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class OTPGenerator {
 
-    protected static String getOTP() {
+    public static String getOTP() {
 
         /* OTP length : 4 */
         String OTP = null;
