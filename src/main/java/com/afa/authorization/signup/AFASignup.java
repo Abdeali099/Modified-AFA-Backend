@@ -1,4 +1,4 @@
-package com.afa.authorization;
+package com.afa.authorization.signup;
 
 import com.afa.database.ConnectionToDatabase;
 import jakarta.servlet.ServletException;
