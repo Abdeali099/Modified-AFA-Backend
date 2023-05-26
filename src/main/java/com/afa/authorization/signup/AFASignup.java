@@ -57,4 +57,15 @@ public class AFASignup extends HttpServlet {
         }
 
     }
+
+    @Override
+    public void destroy() {
+        try {
+                if(connection!=null){
+                    connection.close();
+                }
+        } catch (Exception exception) {
+            System.out.println("Error in closing connection (signup) :  " + exception);
+        }
+    }
 }

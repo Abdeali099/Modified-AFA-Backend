@@ -10,7 +10,7 @@
 
   <servlet-mapping>
       <servlet-name>Signup</servlet-name>
-      <url-pattern>/signup</url-pattern>
+      <url-pattern>/api/auth/signup</url-pattern>
   </servlet-mapping>
 
   <servlet>
@@ -20,7 +20,7 @@
 
   <servlet-mapping>
       <servlet-name>OTP_Send</servlet-name>
-      <url-pattern>/sendOTP</url-pattern>
+      <url-pattern>/api/auth/sendOTP</url-pattern>
   </servlet-mapping>
 
 </web-app>

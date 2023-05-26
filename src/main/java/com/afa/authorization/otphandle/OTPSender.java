@@ -25,7 +25,6 @@ public class OTPSender extends HttpServlet {
             String OTP = OTPGenerator.getOTP();
 
             /* Send OTP through mail */
-
             boolean isMailSend=MailSender.sendMail(user_mail,OTP);
 
             /* Sending response */
@@ -37,6 +36,7 @@ public class OTPSender extends HttpServlet {
                 response.setStatus(500);
                 response.getWriter().println("Error");
             }
+
         } catch (Exception exception) {
             System.out.println("Error in sending OTP : " + exception);
 
