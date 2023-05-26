@@ -4,14 +4,24 @@
   <display-name>Archetype Created Web Application</display-name>
 
   <servlet>
-      <servlet-name>Signup</servlet-name>
+      <servlet-name>Servlet_Signup</servlet-name>
       <servlet-class>com.afa.authorization.signup.AFASignup</servlet-class>
   </servlet>
 
   <servlet-mapping>
-      <servlet-name>Signup</servlet-name>
+      <servlet-name>Servlet_Signup</servlet-name>
       <url-pattern>/api/auth/signup</url-pattern>
   </servlet-mapping>
+
+  <filter>
+      <filter-name>Filter_Signup</filter-name>
+      <filter-class>com.afa.authorization.signup.FilterSignup</filter-class>
+  </filter>
+
+  <filter-mapping>
+      <filter-name>Filter_Signup</filter-name>
+      <url-pattern>/api/auth/signup</url-pattern>
+  </filter-mapping>
 
   <servlet>
       <servlet-name>OTP_Send</servlet-name>
