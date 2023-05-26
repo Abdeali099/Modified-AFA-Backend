@@ -2,6 +2,7 @@ package com.afa.authorization.signup;
 
 import com.afa.validation.DataValidation;
 import jakarta.servlet.*;
+import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
@@ -13,6 +14,8 @@ public class FilterSignup implements Filter {
         System.out.println("Filter is called");
 
         try {
+
+        HttpServletResponse response=(HttpServletResponse)servletResponse;
 
             /* Taking details from request */
             String userName = servletRequest.getParameter("afa_username");
@@ -26,7 +29,13 @@ public class FilterSignup implements Filter {
                     "\n => Password : " + userPassword);
 
             /* Doing validation */
-            boolean isValidate=DataValidation.validateSignup(userName,userEmail,userPhone,userPassword);
+            boolean isDataValidate=DataValidation.validateSignup(userName,userEmail,userPhone,userPassword);
+
+            if (!isDataValidate) {
+                response.setStatus(400);
+                response.getWriter().println(false);
+                return;
+            }
 
             /* validation successful then forward to servlet */
 
