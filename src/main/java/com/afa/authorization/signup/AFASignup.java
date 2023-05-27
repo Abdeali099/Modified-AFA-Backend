@@ -1,25 +1,21 @@
 package com.afa.authorization.signup;
 
 import com.afa.database.ConnectionToDatabase;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import java.io.IOException;
 import java.sql.Connection;
 
 @MultipartConfig
 public class AFASignup extends HttpServlet {
 
-    /* Note : Create one filter which will check validation and other input fields */
-
-    /* Global Object */
+    /*  Objects */
     Connection connection=null;
 
     @Override
-    public void init() throws ServletException {
+    public void init(){
 
         /* Establishing connection : only once */
         try {
@@ -31,7 +27,7 @@ public class AFASignup extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)  {
         response.addHeader("Access-Control-Allow-Origin", "*");
 
         /* <-- Global variables --> */
@@ -45,12 +41,10 @@ public class AFASignup extends HttpServlet {
             userPhone = request.getParameter("afa_phone");
             userPassword = request.getParameter("afa_password");
 
-            System.out.println("\n => Name : " + userName +
-                                "\n => EMail : " + userEmail +
-                                "\n => Phone : " + userPhone +
-                                "\n => Password : " + userPassword);
 
-            response.getWriter().println("Success!!");
+
+            response.setStatus(200);
+            response.getWriter().println("Successfully Registered!!");
 
         } catch (Exception e) {
             System.out.print("\n => Error at Inside SignupServlet : " + e);
