@@ -1,8 +1,12 @@
 package com.afa.database;
 
+import io.jsonwebtoken.security.Keys;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.security.Key;
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -13,7 +17,7 @@ public class ConnectionToDatabase {
 
     /* <---- static attribute ----> */
     private static Connection connection;
-    private static String URL="",USERNAME="",PASSWORD="";
+    private static String URL="",USERNAME="",PASSWORD="",SECRETE_KEY="";
     private static final String PATH="credential.props";
 
     /* <---- Only One time execute ----> */
@@ -35,6 +39,7 @@ public class ConnectionToDatabase {
             URL = prop.getProperty("url");
             USERNAME = prop.getProperty("userName");
             PASSWORD = prop.getProperty("password");
+            SECRETE_KEY = prop.getProperty("JWT_secret_key");
 
             /* Registering Driver class for 'mysql' */
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -64,7 +69,6 @@ public class ConnectionToDatabase {
     }
 
     /* <---- Whenever connection need call this via Class (ConnectionToDatabase.getConnection) ---->*/
-
     public static Connection getConnection() throws SQLException {
 
         try {
@@ -80,6 +84,13 @@ public class ConnectionToDatabase {
 
         /* If by chance connection is null */
         return DriverManager.getConnection(URL, USERNAME, PASSWORD);
+    }
+
+    /* <-- Passing secrete key --> */
+
+    public static Key getSigningKey() {
+        byte[] keyBytes = SECRETE_KEY.getBytes(StandardCharsets.UTF_8);
+        return Keys.hmacShaKeyFor(keyBytes);
     }
 
 }
