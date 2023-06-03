@@ -24,13 +24,11 @@ public class ConnectionToDatabase {
     static {
 
         FileReader fileReader=null;
-
         try {
 
             /* Fetching prop file */
              ClassLoader classLoader = ConnectionToDatabase.class.getClassLoader();
              File file = new File(Objects.requireNonNull(classLoader.getResource(PATH)).getFile());
-
             /* Fetching properties from props */
             fileReader= new FileReader(file);
             Properties prop = new Properties();
@@ -40,10 +38,8 @@ public class ConnectionToDatabase {
             USERNAME = prop.getProperty("userName");
             PASSWORD = prop.getProperty("password");
             SECRETE_KEY = prop.getProperty("JWT_secret_key");
-
             /* Registering Driver class for 'mysql' */
             Class.forName("com.mysql.cj.jdbc.Driver");
-
             /* Initialize connection object */
             connection = null;
 
