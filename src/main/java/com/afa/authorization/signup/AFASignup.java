@@ -44,7 +44,6 @@ public class AFASignup extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.addHeader("Access-Control-Allow-Origin", "*");
 
         /* <-- Global variables --> */
         String userEmail, userPassword, userName, userPhone;

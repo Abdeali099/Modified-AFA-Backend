@@ -37,6 +37,7 @@ public class FilterSignup implements Filter {
         try {
 
             HttpServletResponse response = (HttpServletResponse) servletResponse;
+            response.addHeader("Access-Control-Allow-Origin", "*");
 
             /* <-- Taking details from request --> */
             String userName = servletRequest.getParameter("afa_username");
