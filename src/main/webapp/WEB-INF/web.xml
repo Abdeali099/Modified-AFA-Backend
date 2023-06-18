@@ -4,33 +4,23 @@
   <display-name>Archetype Created Web Application</display-name>
 
   <servlet>
-      <servlet-name>Servlet_Signup</servlet-name>
-      <servlet-class>com.afa.authorization.signup.AFASignup</servlet-class>
+      <servlet-name>Authorised-User</servlet-name>
+      <servlet-class>com.afa.authorization.AuthorisedUser</servlet-class>
   </servlet>
 
   <servlet-mapping>
-      <servlet-name>Servlet_Signup</servlet-name>
-      <url-pattern>/api/auth/signup</url-pattern>
+      <servlet-name>Authorised-User</servlet-name>
+      <url-pattern>/api/auth/authorization</url-pattern>
   </servlet-mapping>
 
-  <filter>
-      <filter-name>Filter_Signup</filter-name>
-      <filter-class>com.afa.authorization.signup.FilterSignup</filter-class>
-  </filter>
+    <filter>
+        <filter-name>Filter_Authorization</filter-name>
+        <filter-class>com.afa.authorization.AuthorisedFilter</filter-class>
+    </filter>
 
-  <filter-mapping>
-      <filter-name>Filter_Signup</filter-name>
-      <url-pattern>/api/auth/signup</url-pattern>
-  </filter-mapping>
-
-  <servlet>
-      <servlet-name>OTP_Send</servlet-name>
-      <servlet-class>com.afa.authorization.otphandle.OTPSender</servlet-class>
-  </servlet>
-
-  <servlet-mapping>
-      <servlet-name>OTP_Send</servlet-name>
-      <url-pattern>/api/auth/sendOTP</url-pattern>
-  </servlet-mapping>
+    <filter-mapping>
+        <filter-name>Filter_Authorization</filter-name>
+        <url-pattern>/api/auth/authorization</url-pattern>
+    </filter-mapping>
 
 </web-app>
